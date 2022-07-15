@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'libro.dart';
+import 'libro.dart'; //importo il file con i dati
 
 class LibroScreen extends StatelessWidget {
   final Libro libro;

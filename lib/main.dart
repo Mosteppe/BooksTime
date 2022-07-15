@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; //posso richiamare semplicemente http
-import 'dart:convert';
+import 'dart:convert';  //libreria che permette di codificare e decodificare json a map
 import 'libro.dart';
 import 'libroScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp()); //MyApp widget iniziale dell'app
 }
 
 class MyApp extends StatelessWidget {
+  //serve solo a mostrare informazioni e UI e viene gestito dal framework;
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LibriScreen extends StatefulWidget {
+class LibriScreen extends StatefulWidget {  //gestisce dati di cui deve tener traccia
   const LibriScreen({Key? key}) : super(key: key);
 
   @override
@@ -38,6 +39,7 @@ class _LibriScreenState extends State<LibriScreen> {
   List<Libro> libri = []; //elenco di oggetti Libro
   @override
   void initState() {
+    //si utilizza per richiamare un metodo che viene eseguito una sola volta
     cercaLibri('Una vita come tante');
     super.initState();
   }
@@ -91,10 +93,12 @@ class _LibriScreenState extends State<LibriScreen> {
   }
 
   Future cercaLibri(String ricerca) async {
-    //nuovo metodo che restituisce una "ricevuta" (asincrono)
+    //nuovo metodo che restituisce una "ricevuta" (asincrono), necessario per utilizzare il pacchetto http (lento)
     final String dominio = 'www.googleapis.com';
     final String percorso = '/books/v1/volumes';
-    Map<String, dynamic> parametri = {'q': ricerca};
+    Map<String, dynamic> parametri = {
+      'q': ricerca
+    }; //insieme di chiavi (String) e valori
     final Uri url = Uri.https(dominio, percorso, parametri);
     try {
       http.get(url).then((res) {

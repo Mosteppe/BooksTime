@@ -1,3 +1,5 @@
+//file con i dati che ci servono
+
 class Libro {
   late String id;
   late String titolo;
@@ -6,9 +8,9 @@ class Libro {
   late String editore;
   late String immagineCopertina;
 
-  Libro(this.id, this.titolo, this.autori, this.descrizione, this.editore, this.immagineCopertina);
+  Libro(this.id, this.titolo, this.autori, this.descrizione, this.editore, this.immagineCopertina); //unnamed constructor
 
-  Libro.fromMap(Map<String, dynamic> mappa) {
+  Libro.fromMap(Map<String, dynamic> mappa) { //named constructor che accetta una map con chiavi di tipo string e valori di qualunque tipo (dynamic)
     this.id = mappa['id'];
     this.titolo = mappa['volumeInfo']['title'];
     this.autori = (mappa['volumeInfo']['authors'] == null)
