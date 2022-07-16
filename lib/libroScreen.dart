@@ -6,8 +6,8 @@ class LibroScreen extends StatelessWidget {
   LibroScreen(this.libro);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return Scaffold( //widget che introduce tutti i componenti per il Material Design
+      appBar: AppBar( //parte di navigazione dell'app
         title: Text(libro.titolo),
       ),
       body: SingleChildScrollView(

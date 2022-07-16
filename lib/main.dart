@@ -4,16 +4,14 @@ import 'dart:convert';  //libreria che permette di codificare e decodificare jso
 import 'libro.dart';
 import 'libroScreen.dart';
 
-void main() {
-  runApp(const MyApp()); //MyApp widget iniziale dell'app
-}
+void main() => runApp(const MyApp()); //MyApp widget iniziale dell'app
 
 class MyApp extends StatelessWidget {
   //serve solo a mostrare informazioni e UI e viene gestito dal framework;
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+  @override  //metodo da sovrascrivere
+  Widget build(BuildContext context) { //ogni StatelessWidget ha un metodo build che indica cosa visualizzare
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BooksTime',
