@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http; //posso richiamare semplicemente http
-import 'dart:convert';  //libreria che permette di codificare e decodificare json a map
+import 'dart:convert'; //libreria che permette di codificare e decodificare json a map
 import 'libro.dart';
 import 'libroScreen.dart';
+
+String titleapp = "BooksTime";
 
 void main() => runApp(const MyApp()); //MyApp widget iniziale dell'app
 
@@ -10,8 +12,9 @@ class MyApp extends StatelessWidget {
   //serve solo a mostrare informazioni e UI e viene gestito dal framework;
   const MyApp({Key? key}) : super(key: key);
 
-  @override  //metodo da sovrascrivere
-  Widget build(BuildContext context) { //ogni StatelessWidget ha un metodo build che indica cosa visualizzare
+  @override //metodo da sovrascrivere
+  Widget build(BuildContext context) {
+    //ogni StatelessWidget ha un metodo build che indica cosa visualizzare
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BooksTime',
@@ -23,7 +26,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class LibriScreen extends StatefulWidget {  //gestisce dati di cui deve tener traccia
+class LibriScreen extends StatefulWidget {
+  //gestisce dati di cui deve tener traccia
   const LibriScreen({Key? key}) : super(key: key);
 
   @override
@@ -32,7 +36,7 @@ class LibriScreen extends StatefulWidget {  //gestisce dati di cui deve tener tr
 
 class _LibriScreenState extends State<LibriScreen> {
   Icon icona = Icon(Icons.search);
-  Widget widgetRicerca = Text('Libri');
+  Widget widgetRicerca = Text(titleapp);
   String risultato = '';
   List<Libro> libri = []; //elenco di oggetti Libro
   @override
@@ -62,7 +66,7 @@ class _LibriScreenState extends State<LibriScreen> {
                 } else {
                   setState(() {
                     this.icona = Icon(Icons.search);
-                    this.widgetRicerca = Text('Libri');
+                    this.widgetRicerca = Text(titleapp);
                   });
                 }
               });
@@ -101,9 +105,13 @@ class _LibriScreenState extends State<LibriScreen> {
     try {
       http.get(url).then((res) {
         //richiamo il metodo http.get passando l'url dove recuperare i dati e passo i dati a res
-        final resJson = json.decode(res.body); //dichiaro variabile che prende il contenuto del risultato della richiesta del metodo GET e la decodifica
-        final libriMap = resJson['items']; //mette il contenuto della chiava items nella variabile libriMap
-        libri = libriMap.map<Libro>((mappa) => Libro.fromMap(mappa)).toList(); //il metodo Map permette di scorrere ciascun elemento all'interno di un insieme e per ciascuno elemento all'interno dell'insieme libriMap prendiamo un oggetto (mappa) e per ciascuna mappa restituiamo un oggetto di tipo libro
+        final resJson = json.decode(res
+            .body); //dichiaro variabile che prende il contenuto del risultato della richiesta del metodo GET e la decodifica
+        final libriMap = resJson[
+            'items']; //mette il contenuto della chiava items nella variabile libriMap
+        libri = libriMap
+            .map<Libro>((mappa) => Libro.fromMap(mappa))
+            .toList(); //il metodo Map permette di scorrere ciascun elemento all'interno di un insieme e per ciascuno elemento all'interno dell'insieme libriMap prendiamo un oggetto (mappa) e per ciascuna mappa restituiamo un oggetto di tipo libro
         setState(() {
           risultato = res.body; //modifico la variabile di stato risultato
           libri = libri;
