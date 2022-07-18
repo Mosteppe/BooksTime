@@ -6,44 +6,47 @@ class LibroScreen extends StatelessWidget {
   LibroScreen(this.libro);
   @override
   Widget build(BuildContext context) {
-    return Scaffold( //widget che introduce tutti i componenti per il Material Design
-      appBar: AppBar( //parte di navigazione dell'app
+    return Scaffold(
+      //widget che introduce tutti i componenti per il Material Design
+      appBar: AppBar(
+        //parte di navigazione dell'app
         title: Text(libro.titolo),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(20.0),
-          child: Column (
-            children: <Widget>[ 
-              Padding(  
-                padding: EdgeInsets.all(8),
-                child: Image.network(libro.immagineCopertina),
-              ),
-              Padding(  
-                padding: EdgeInsets.all(8),
-                child: Text('Scritto da ' + libro.autori, 
-                  style: TextStyle(  
-                    fontSize: 20, 
-                    color: Colors.black,
-                    ),
-                  ),
-                ),
-              Padding(  
-                padding: EdgeInsets.all(8),
-                child: Text('Editore ' + libro.editore, 
-                  style: TextStyle (  
-                    fontSize: 16,
-                    ),
-                  ),
-                ),
-              Padding(  
-                padding: EdgeInsets.all(8),
-                child: Text(libro.descrizione), 
-                ),
-            ],
+          child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Image.network(libro.immagineCopertina),
             ),
-       )
-    ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'Scritto da ' + libro.autori,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(
+                'Editore ' + libro.editore,
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8),
+              child: Text(libro.descrizione),
+            ),
+          ],
+        ),
+      )),
     );
   }
 }

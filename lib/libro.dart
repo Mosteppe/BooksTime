@@ -8,9 +8,11 @@ class Libro {
   late String editore;
   late String immagineCopertina;
 
-  Libro(this.id, this.titolo, this.autori, this.descrizione, this.editore, this.immagineCopertina); //unnamed constructor
+  Libro(this.id, this.titolo, this.autori, this.descrizione, this.editore,
+      this.immagineCopertina); //unnamed constructor
 
-  Libro.fromMap(Map<String, dynamic> mappa) { //named constructor che accetta una map con chiavi di tipo string e valori di qualunque tipo (dynamic)
+  Libro.fromMap(Map<String, dynamic> mappa) {
+    //named constructor che accetta una map con chiavi di tipo string e valori di qualunque tipo (dynamic)
     this.id = mappa['id'];
     this.titolo = mappa['volumeInfo']['title'];
     this.autori = (mappa['volumeInfo']['authors'] == null)
@@ -23,12 +25,12 @@ class Libro {
         ? ''
         : mappa['volumeInfo']['publisher'].toString();
     try {
-      this.immagineCopertina = (mappa['volumeInfo']['imageLinks']['smallThumbnail'] == null)
-        ? ''
-        : mappa['volumeInfo']['imageLinks']['smallThumbnail'].toString();
-      } 
-      catch (errore) {
-      this.immagineCopertina = ''; 
-      }
+      this.immagineCopertina =
+          (mappa['volumeInfo']['imageLinks']['smallThumbnail'] == null)
+              ? ''
+              : mappa['volumeInfo']['imageLinks']['smallThumbnail'].toString();
+    } catch (errore) {
+      this.immagineCopertina = '';
+    }
   }
 }
